@@ -6,6 +6,8 @@
 
 <svelte:head>
     <title>Escape Zone</title>
+	<script defer src="/src/js/click-scroll.js"></script>
+	<script defer src="/src/js/custom.js"></script>
 </svelte:head>
 
 <main>
@@ -126,18 +128,18 @@
 							<a class="nav-link smoothscroll" href="#item-1">Introduction</a>
 
 							<a class="nav-link smoothscroll" href="#item-2"
-								>Chapter 1: <strong>Win back your time</strong></a
+								>Chapter 1: <strong>Unleash Your Curiosity</strong></a
 							>
 
 							<a class="nav-link smoothscroll" href="#item-3"
-								>Chapter 2: <strong>Work less, do more</strong></a
+								>Chapter 2: <strong>Empowering Learning at Your Fingertips</strong></a
 							>
 
 							<a class="nav-link smoothscroll" href="#item-4"
-								>Chapter 3: <strong>Delegate</strong></a
+								>Chapter 3: <strong>Education Without Boundaries</strong></a
 							>
 
-							<a class="nav-link smoothscroll" href="#item-5">Chapter 4: <strong>Habits</strong></a>
+							<a class="nav-link smoothscroll" href="#item-5">Chapter 4: <strong>Embark on Your Escape Zone Journey</strong></a>
 						</nav>
 					</nav>
 				</div>
