@@ -1,13 +1,75 @@
 <script>
 	import Nav from '../components/Nav.svelte';
+	import edImg from '$lib/images/education-online-books.png';
+	import person1 from '$lib/images/avatar/portrait-beautiful-young-woman-standing-grey-wall.jpg';
+	import person2 from '$lib/images/avatar/portrait-young-redhead-bearded-male.jpg';
+	import person3 from '$lib/images/avatar/pretty-blonde-woman.jpg';
+	import person4 from '$lib/images/avatar/studio-portrait-emotional-happy-funny-smiling-boyfriend.jpg';
+	import tablet from '$lib/images/tablet-screen-contents.jpg';
+	import founder from '$lib/images/portrait-mature-smiling-authoress-sitting-desk.jpg';
+	import man from '$lib/images/businessman-sitting-by-table-cafe.jpg';
+	import '$lib/css/bootstrap-icons.css';
+	import '$lib/css/bootstrap.min.css';
+	import '$lib/css/style.css';
+	import { onMount } from 'svelte';
+
+	onMount(() => {
+		let sectionArray = [1, 2, 3, 4, 5];
+
+		sectionArray.forEach(function (value, index) {
+			var sectionElement = document.getElementById('section_' + value);
+			var navElement = document.getElementById('item-' + value);
+
+			window.addEventListener('scroll', function () {
+				var offsetSection = sectionElement.getBoundingClientRect().top + window.scrollY - 88;
+				var docScroll = window.scrollY;
+				var docScroll1 = docScroll + 1;
+
+				if (docScroll1 >= offsetSection) {
+					var navLinks = document.querySelectorAll('.navbar-nav .nav-item .nav-link');
+					navLinks.forEach(function (link) {
+						link.classList.remove('active');
+						link.classList.add('inactive');
+					});
+
+					navLinks[index].classList.remove('inactive');
+					navLinks[index].classList.add('active');
+				}
+
+				var navOffsetSection = navElement.getBoundingClientRect().top + this.window.scrollY - 88;
+				
+				if (docScroll1 >= navOffsetSection) {
+					navLinks = document.querySelectorAll('.nav-pills .nav-link');
+					navLinks.forEach(function (link) {
+						link.classList.remove('active');
+						link.classList.add('inactive');
+					});
+
+					navLinks[index].classList.remove('inactive');
+					navLinks[index].classList.add('active');
+				}
+			});
+
+		});
+
+		document.addEventListener('DOMContentLoaded', function () {
+			var navLinks = document.querySelectorAll('.navbar-nav .nav-item .nav-link');
+			navLinks.forEach(function (link, idx) {
+				if (idx === 0) {
+					link.classList.remove('inactive');
+					link.classList.add('active');
+				} else {
+					link.classList.add('inactive');
+				}
+			});
+		});
+	});
 </script>
 
 <Nav />
 
 <svelte:head>
-    <title>Escape Zone</title>
-	<script defer src="/src/js/click-scroll.js"></script>
-	<script defer src="/src/js/custom.js"></script>
+	<title>Escape Zone</title>
 </svelte:head>
 
 <main>
@@ -25,11 +87,7 @@
 				</div>
 
 				<div class="hero-image-wrap col-lg-6 col-12 mt-3 mt-lg-0">
-					<img
-						src="../src/images/education-online-books.png"
-						class="hero-image img-fluid"
-						alt="education online books"
-					/>
+					<img src={edImg} class="hero-image img-fluid" alt="education online books" />
 				</div>
 			</div>
 		</div>
@@ -40,29 +98,13 @@
 			<div class="row">
 				<div class="col-lg-8 col-12">
 					<div class="avatar-group d-flex flex-wrap align-items-center">
-						<img
-							src="../src/images/avatar/portrait-beautiful-young-woman-standing-grey-wall.jpg"
-							class="img-fluid avatar-image"
-							alt=""
-						/>
+						<img src={person1} class="img-fluid avatar-image" alt="" />
 
-						<img
-							src="../src/images/avatar/portrait-young-redhead-bearded-male.jpg"
-							class="img-fluid avatar-image avatar-image-left"
-							alt=""
-						/>
+						<img src={person2} class="img-fluid avatar-image avatar-image-left" alt="" />
 
-						<img
-							src="../src/images/avatar/pretty-blonde-woman.jpg"
-							class="img-fluid avatar-image avatar-image-left"
-							alt=""
-						/>
+						<img src={person3} class="img-fluid avatar-image avatar-image-left" alt="" />
 
-						<img
-							src="../src/images/avatar/studio-portrait-emotional-happy-funny-smiling-boyfriend.jpg"
-							class="img-fluid avatar-image avatar-image-left"
-							alt=""
-						/>
+						<img src={person4} class="img-fluid avatar-image avatar-image-left" alt="" />
 
 						<div class="reviews-group mt-3 mt-lg-0">
 							<strong>4.0</strong>
@@ -87,7 +129,7 @@
 		<div class="container">
 			<div class="row">
 				<div class="col-lg-6 col-12">
-					<img src="../src/images/tablet-screen-contents.jpg" class="img-fluid" alt="" />
+					<img src={tablet} class="img-fluid" alt="" />
 				</div>
 
 				<div class="col-lg-6 col-12">
@@ -139,12 +181,14 @@
 								>Chapter 3: <strong>Education Without Boundaries</strong></a
 							>
 
-							<a class="nav-link smoothscroll" href="#item-5">Chapter 4: <strong>Embark on Your Escape Zone Journey</strong></a>
+							<a class="nav-link smoothscroll" href="#item-5"
+								>Chapter 4: <strong>Embark on Your Escape Zone Journey</strong></a
+							>
 						</nav>
 					</nav>
 				</div>
 
-				<div class="col-lg-8 col-12">
+				<div class="col-lg-8 col-12" >
 					<div
 						data-bs-spy="scroll"
 						data-bs-target="#navbar-example3"
@@ -153,7 +197,7 @@
 						tabindex="0"
 					>
 						<div class="scrollspy-example-item" id="item-1">
-							<h5>Introducing Escape Zone</h5>
+							<h5 >Introducing Escape Zone</h5>
 
 							<p>
 								Welcome to Escape Zone, the virtual haven where curiosity knows no boundaries and
@@ -169,40 +213,38 @@
 							</p>
 
 							<blockquote class="blockquote">
-                                Online education, also known as e-learning, is a method of delivering educational content and instruction through digital technologies and the internet, enabling learners to access courses and resources from anywhere with an internet connection.							
-                            </blockquote>
+								Online education, also known as e-learning, is a method of delivering educational
+								content and instruction through digital technologies and the internet, enabling
+								learners to access courses and resources from anywhere with an internet connection.
+							</blockquote>
 						</div>
 
 						<div class="scrollspy-example-item" id="item-2">
 							<h5>Unleash Your Curiosity</h5>
 
 							<p>
-								At Escape Zone, we believe that curiosity is the driving force behind great discoveries. 
+								At Escape Zone, we believe that curiosity is the driving force behind great
+								discoveries.
 							</p>
 
 							<p>
-								It is the spark that ignites the flames of imagination and fuels the quest for knowledge. 
+								It is the spark that ignites the flames of imagination and fuels the quest for
+								knowledge.
 							</p>
 
 							<p>
-								Our platform is carefully crafted to nurture your curiosity, providing you with an ever-growing repository of captivating videos and enriching e-books across a vast spectrum of subjects.
+								Our platform is carefully crafted to nurture your curiosity, providing you with an
+								ever-growing repository of captivating videos and enriching e-books across a vast
+								spectrum of subjects.
 							</p>
 
 							<div class="row">
 								<div class="col-lg-6 col-12 mb-3">
-									<img
-										src="../src/images/portrait-mature-smiling-authoress-sitting-desk.jpg"
-										class="scrollspy-example-item-image img-fluid"
-										alt=""
-									/>
+									<img src={founder} class="scrollspy-example-item-image img-fluid" alt="" />
 								</div>
 
 								<div class="col-lg-6 col-12 mb-3">
-									<img
-										src="../src/images/businessman-sitting-by-table-cafe.jpg"
-										class="scrollspy-example-item-image img-fluid"
-										alt=""
-									/>
+									<img src={man} class="scrollspy-example-item-image img-fluid" alt="" />
 								</div>
 							</div>
 						</div>
@@ -210,20 +252,21 @@
 						<div class="scrollspy-example-item" id="item-3">
 							<h5>Empowering Learning at Your Fingertips</h5>
 
+							<p>Gone are the days of traditional classrooms and rigid schedules.</p>
 							<p>
-								Gone are the days of traditional classrooms and rigid schedules.
-							</p>
-							<p>
-								With Escape Zone, you have the power to learn at your own pace and on your own terms.
+								With Escape Zone, you have the power to learn at your own pace and on your own
+								terms.
 							</p>
 
 							<p>
-								Seamlessly access our content from the comfort of your home, while traveling, or during moments of inspiration – all you need is an internet connection and an open mind.
+								Seamlessly access our content from the comfort of your home, while traveling, or
+								during moments of inspiration – all you need is an internet connection and an open
+								mind.
 							</p>
 
 							<div class="row align-items-center">
 								<div class="col-lg-6 col-12">
-									<img src="../src/images/tablet-screen-contents.jpg" class="img-fluid" alt="" />
+									<img src={tablet} class="img-fluid" alt="" />
 								</div>
 
 								<div class="col-lg-6 col-12">
@@ -235,13 +278,17 @@
 										>
 									</p>
 
-                                    <p>
-                                        Our expertly curated collection of content, crafted by educators and subject matter specialists, ensures that you receive the most accurate and up-to-date information.
-                                    </p>
+									<p>
+										Our expertly curated collection of content, crafted by educators and subject
+										matter specialists, ensures that you receive the most accurate and up-to-date
+										information.
+									</p>
 
-                                    <p>
-                                        Embracing a multidisciplinary approach, we cater to a diverse range of interests and age groups, making learning an inclusive and enjoyable experience for everyone.
-                                    </p>
+									<p>
+										Embracing a multidisciplinary approach, we cater to a diverse range of interests
+										and age groups, making learning an inclusive and enjoyable experience for
+										everyone.
+									</p>
 								</div>
 							</div>
 						</div>
@@ -250,37 +297,38 @@
 							<h5>Education Without Boundaries</h5>
 
 							<p>
-								We believe that education should be accessible to all, regardless of geographical location or financial constraints.
+								We believe that education should be accessible to all, regardless of geographical
+								location or financial constraints.
 							</p>
 
 							<p>
-								Escape Zone's user-friendly interface and cross-device compatibility ensure that knowledge is always within reach.
+								Escape Zone's user-friendly interface and cross-device compatibility ensure that
+								knowledge is always within reach.
 							</p>
 
 							<p>
 								Empowering learners from all walks of life to embark on their educational journey.
 							</p>
 
-							<img
-								src="../src/images/portrait-mature-smiling-authoress-sitting-desk.jpg"
-								class="scrollspy-example-item-image img-fluid mb-3"
-								alt=""
-							/>
+							<img src={founder} class="scrollspy-example-item-image img-fluid mb-3" alt="" />
 						</div>
 
 						<div class="scrollspy-example-item" id="item-5">
 							<h5>Embark on Your Escape Zone Journey</h5>
 
 							<p>
-								Are you ready to break free from the ordinary and dive headfirst into the extraordinary world of learning?
+								Are you ready to break free from the ordinary and dive headfirst into the
+								extraordinary world of learning?
 							</p>
 
 							<p>
-								Join us at Escape Zone, where the pursuit of knowledge knows no limits. Unleash your potential, challenge your intellect, and experience the joy of enlightenment.
+								Join us at Escape Zone, where the pursuit of knowledge knows no limits. Unleash your
+								potential, challenge your intellect, and experience the joy of enlightenment.
 							</p>
 
 							<p>
-								<strong>Let's embark on this transformative adventure together</strong> one that transcends boundaries, inspires innovation, and paves the way for a brighter, more empowered future.
+								<strong>Let's embark on this transformative adventure together</strong> one that transcends
+								boundaries, inspires innovation, and paves the way for a brighter, more empowered future.
 							</p>
 
 							<blockquote class="blockquote">
@@ -297,11 +345,7 @@
 		<div class="container">
 			<div class="row">
 				<div class="col-lg-6 col-12">
-					<img
-						src="../src/images/portrait-mature-smiling-authoress-sitting-desk.jpg"
-						class="author-image img-fluid"
-						alt=""
-					/>
+					<img src={founder} class="author-image img-fluid" alt="" />
 				</div>
 
 				<div class="col-lg-6 col-12 mt-5 mt-lg-0">
@@ -309,13 +353,9 @@
 
 					<h2 class="mb-4">Prof. Daus</h2>
 
-					<p>
-						Daus is a President University Student
-					</p>
+					<p>Daus is a President University Student</p>
 
-					<p>
-						Daus accomplished a lot of things.
-					</p>
+					<p>Daus accomplished a lot of things.</p>
 				</div>
 			</div>
 		</div>
@@ -333,11 +373,7 @@
 				<div class="col-lg-4 col-12">
 					<div class="custom-block d-flex flex-wrap">
 						<div class="custom-block-image-wrap d-flex flex-column">
-							<img
-								src="../src/images/avatar/portrait-beautiful-young-woman-standing-grey-wall.jpg"
-								class="img-fluid avatar-image"
-								alt=""
-							/>
+							<img src={person1} class="img-fluid avatar-image" alt="" />
 
 							<div class="text-center mt-3">
 								<span class="text-white">Sandy</span>
@@ -358,7 +394,9 @@
 							</div>
 
 							<p class="mb-0">
-								Escape Zone is an exceptional platform for learning! The vast library of videos and e-books covers an array of subjects, making it perfect for both students and professionals.
+								Escape Zone is an exceptional platform for learning! The vast library of videos and
+								e-books covers an array of subjects, making it perfect for both students and
+								professionals.
 							</p>
 						</div>
 					</div>
@@ -367,11 +405,7 @@
 				<div class="col-lg-4 col-12 my-5 my-lg-0">
 					<div class="custom-block d-flex flex-wrap">
 						<div class="custom-block-image-wrap d-flex flex-column">
-							<img
-								src="../src/images/avatar/portrait-young-redhead-bearded-male.jpg"
-								class="img-fluid avatar-image avatar-image-left"
-								alt=""
-							/>
+							<img src={person2} class="img-fluid avatar-image avatar-image-left" alt="" />
 
 							<div class="text-center mt-3">
 								<span class="text-white">John</span>
@@ -392,7 +426,9 @@
 							</div>
 
 							<p class="mb-0">
-								Escape Zone is a game-changer in the world of online education. As a busy professional, I needed a flexible and accessible learning solution, and this platform delivered beyond my expectations. 
+								Escape Zone is a game-changer in the world of online education. As a busy
+								professional, I needed a flexible and accessible learning solution, and this
+								platform delivered beyond my expectations.
 							</p>
 						</div>
 					</div>
@@ -401,11 +437,7 @@
 				<div class="col-lg-4 col-12">
 					<div class="custom-block d-flex flex-wrap">
 						<div class="custom-block-image-wrap d-flex flex-column">
-							<img
-								src="../src/images/avatar/pretty-blonde-woman.jpg"
-								class="img-fluid avatar-image"
-								alt=""
-							/>
+							<img src={person3} class="img-fluid avatar-image" alt="" />
 
 							<div class="text-center mt-3">
 								<span class="text-white">Candy</span>
@@ -426,7 +458,9 @@
 							</div>
 
 							<p class="mb-0">
-								Escape Zone has revolutionized the way I learn! As a lifelong learner, I've always been passionate about acquiring new knowledge, and this platform has made it incredibly convenient and enjoyable. 
+								Escape Zone has revolutionized the way I learn! As a lifelong learner, I've always
+								been passionate about acquiring new knowledge, and this platform has made it
+								incredibly convenient and enjoyable.
 							</p>
 						</div>
 					</div>

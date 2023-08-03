@@ -549,7 +549,7 @@ strong {
   HERO        
 -----------------------------------------*/
 .hero-section {
-  background-image: url('../images/businessman-sitting-by-table-cafe.jpg');
+  background-image: url('$lib/images/businessman-sitting-by-table-cafe.jpg');
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
@@ -618,7 +618,7 @@ strong {
   CUSTOM BLOCK              
 -----------------------------------------*/
 .custom-block {
-  background-image: url('../images/businessman-sitting-by-table-cafe.jpg');
+  background-image: url('$lib/images/businessman-sitting-by-table-cafe.jpg');
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
@@ -718,6 +718,7 @@ strong {
 }
 
 .scrollspy-example-item {
+  scroll-margin-top: 80px;
   border-bottom: 5px dotted var(--p-color);
   min-height: 500px;
   padding-top: 20px;
@@ -762,7 +763,7 @@ strong {
   AUTHOR SECTION            
 -----------------------------------------*/
 .author-section {
-  background-image: url('../images/circle-scatter-haikei.png');
+  background-image: url('$lib/images/circle-scatter-haikei.png');
   background-repeat: no-repeat;
   background-size: contain;
   background-position: left bottom;
@@ -779,18 +780,6 @@ strong {
   height: 350px;
   object-fit: cover;
 }
-
-
-/*---------------------------------------
-  DIVIDER SECTION               
------------------------------------------*/
-.divider-section {
-  background-image: url('../images/wave-haikei.png');
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-position: center;
-}
-
 
 /*---------------------------------------
   CONTACT               
