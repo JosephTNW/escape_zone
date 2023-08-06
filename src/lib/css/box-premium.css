@@ -1,0 +1,34 @@
+.box-premium {
+    padding: 1rem;
+    background: #0008ff3a;
+    border-radius: 20px;
+}
+
+.m-2 {
+    margin: 2rem;
+}
+
+.box-premium p {
+    max-width: 300px;
+}
+
+.box-premium button {
+    background: var(--white-color);
+    border: none;
+    font-weight: 100;
+    color: var(--secondary-color);
+    padding: 1rem;
+    width: 100%;
+    border-radius: 100px;
+    max-width: 250px;
+}
+
+.content {
+    display: flex;
+    justify-content: space-between;
+}
+
+.content img {
+    width: 20%;
+    height: auto;
+}

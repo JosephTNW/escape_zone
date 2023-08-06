@@ -1,0 +1,110 @@
+:root {
+    --white-color: #ffffff;
+    --primary-color: #FB6B3C;
+    --secondary-color: #2BCCD3;
+    --section-bg-color: #f0f8ff;
+    --custom-btn-bg-color: #5E17EB;
+    --custom-btn-bg-hover-color: #CCFF00;
+    --dark-color: #010101;
+    --p-color: #717275;
+    --link-hover-color: #E76F51;
+  
+    --body-font-family: 'Unbounded', sans-serif;
+  
+    --h1-font-size: 42px;
+    --h2-font-size: 36px;
+    --h3-font-size: 28px;
+    --h4-font-size: 24px;
+    --h5-font-size: 22px;
+    --h6-font-size: 20px;
+    --p-font-size: 16px;
+    --menu-font-size: 12px;
+    --btn-font-size: 14px;
+    --copyright-font-size: 14px;
+  
+    --border-radius-large: 100px;
+    --border-radius-medium: 20px;
+    --border-radius-small: 10px;
+  
+    --font-weight-light: 300;
+    --font-weight-normal: 400;
+    --font-weight-semibold: 600;
+    --font-weight-bold: 700;
+}
+
+.side-nav {
+    position: fixed;
+    width: 20vw;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    background-color: var(--section-bg-color);
+}
+
+.side-nav i {
+    scale: 0.7;
+}
+
+.side-nav h3 {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.side-nav ul {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    height: 40vh;
+    padding: 0;
+}
+
+.side-nav ul li {
+    list-style-type: none;
+    transition: border 0.2s ease-in-out;
+}
+
+.side-nav ul li button {
+    width: 15vw;
+    margin: auto;
+    display: flex;
+    justify-content: flex-start;
+    gap: 2vw;
+    align-items: center;
+    border: none;
+    background: none;
+    transition: all 0.2s ease-in-out;
+}
+
+button i {
+    scale: 1.4 !important;
+}
+
+button h5 {
+    transition: all 0.2s ease-in-out;
+    margin: 0;
+}
+
+.side-nav ul li button:hover, .side-nav ul li:hover h5 {
+    color: var(--secondary-color);
+}
+
+.side-nav ul li:hover {
+    border-right: solid 4px var(--secondary-color);
+}
+
+h5.active, button.active {
+    color: var(--secondary-color);
+}
+
+li.active {
+    border-right: solid 4px var(--secondary-color);
+}
+
+.nav-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%;
+}
+
