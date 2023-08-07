@@ -60,13 +60,6 @@
     font-size: 8px;
 }
 
-.seperator {
-    width: 0.5px;
-    height: fill;
-    background: var(--dark-color);
-    opacity: 20%;
-}
-
 .host {
     font-size: 12px;
 }

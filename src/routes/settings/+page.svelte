@@ -1,7 +1,7 @@
 <script>
-	import DashNav from "../../components/DashNav.svelte";
+	import SideDashNav from "../../components/SideDashNav.svelte";
 </script>
 
 <header>
-    <DashNav menu=5/>
+    <SideDashNav menu=5/>
 </header>

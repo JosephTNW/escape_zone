@@ -1,5 +1,5 @@
 <script>
-	import DashNav from '../../components/DashNav.svelte';
+	import SideDashNav from '../../components/SideDashNav.svelte';
 	import '$lib/css/dashboard.css';
 	import { onMount } from 'svelte';
 	import PromoBox from '../../components/PromoBox.svelte';
@@ -9,29 +9,13 @@
 	import ProfileBox from '../../components/ProfileBox.svelte';
 	import UserList from '../../components/UserList.svelte';
 	import EventBubble from '../../components/EventBubble.svelte';
+	import SearchBar from '../../components/SearchBar.svelte';
 
 	const username = 'Joseph';
-
-	onMount(() => {
-		const close = document.querySelector('.bi-x-lg');
-		const searchInput = document.querySelector('.search-input');
-
-		searchInput.addEventListener('input', () => {
-			if (searchInput.value == '') {
-				close.style.visibility = 'hidden';
-			} else {
-				close.style.visibility = 'visible';
-			}
-		});
-		close.addEventListener('click', () => {
-			searchInput.value = '';
-			close.style.visibility = 'hidden';
-		});
-	});
 </script>
 
 <header>
-	<DashNav />
+	<SideDashNav />
 </header>
 
 <main>
@@ -41,11 +25,7 @@
 				<h2>Hi {username},</h2>
 				<p>Let's learn something new today</p>
 			</div>
-			<form class="search-bar">
-				<i class="bi bi-search-heart" />
-				<input class="search-input" placeholder="Search" type="text" />
-				<i class="bi bi-x-lg" />
-			</form>
+			<SearchBar/>
 		</div>
 		<PromoBox picture="true" />
 		<div class="middle-center">
@@ -67,6 +47,7 @@
 			</div>
 		</div>
 	</section>
+	<div class="seperator"></div>
 	<section class="side">
 		<div class="side-top">
 			<div class="notification">

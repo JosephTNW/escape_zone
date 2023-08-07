@@ -32,85 +32,71 @@
     --font-weight-bold: 700;
 }
 
-body {
+nav {
     display: flex;
-    justify-content: space-between;
-}
-
-main {
-    width: 80vw;
-    display: flex;
-}
-
-.middle {
-    display: flex;
-    flex-direction: column;
-    gap: 2vh;
-    width: 60vw;
-    padding: 50px;
-}
-
-.middle-top {
-    display: flex;
-    justify-content: space-between;
-}
-
-.side {
-    width: 20vw;
-}
-
-.overview {
-    display: flex;
-    width: 100%;
-    justify-content: space-between;
-}
-
-.course-list {
-    display: flex;
-    justify-content: space-between;
+    position: sticky;
     align-items: center;
-    height: auto;
-    flex-wrap: wrap;
-}
-
-.side {
-    display: flex;
-    flex-direction: column;
-    padding: 2%;
-    height: 100%;
-    gap: 2.5vh;
-}
-
-.seperator {
-    width: 0.5px;
-    height: fill;
-    background: var(--dark-color);
-    opacity: 20%;
-}
-
-.side-top {
-    display: flex;
     justify-content: space-between;
 }
 
-.side-middle {
+nav ul {
     display: flex;
-    flex-direction: column;
+    align-items: center;
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    width: fit-content;
+    gap: 2vw;
 }
 
-.section-user {
+nav h3 {
+    width: 20vw;
     display: flex;
-    flex-direction: column;
-    gap: 1.5vh;
+    justify-content: space-around;
+    margin: 0;
+    align-items: center;
 }
 
-.side-bottom {
-    display: flex;
-    flex-direction: column;
-    gap: 1.5vh;
+h3 i {
+    scale: 0.7;
 }
 
-.notification{
+nav li {
+    display: flex;
+    gap: 0.5vw;
+    cursor: pointer;
+}
+
+.blue {
+    background: var(--section-bg-color);
+}
+
+.white {
+    background: var(--white-color);
+}
+
+.nav-left {
+    display: flex;
+    align-items: center;
+    width: 45vw;
+    justify-content: space-between;
+}
+
+.nav-right {
+    display: flex;
+    height: 100%;
+    width: 38vw;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.nav-end {
+    display: flex;
+    justify-content: space-evenly;
+    width: 18vw;
+}
+
+.white .icon{
     border-radius: 100%;
     color: var(--secondary-color);
     display: flex;
@@ -121,10 +107,17 @@ main {
     height: 3vw;
 }
 
-.bi.bi-bell {
-    scale: 1.5;
+.blue .icon {
+    border-radius: 100%;
+    color: var(--secondary-color);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--white-color);
+    width: 3vw;
+    height: 3vw;
 }
 
-.side hr {
-    margin: 0 5%;
+.icon .bi {
+    scale: 1.5;
 }
