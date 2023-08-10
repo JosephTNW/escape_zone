@@ -95,10 +95,12 @@ button h5 {
 
 h5.active, button.active {
     color: var(--secondary-color);
+    border-bottom: none;
 }
 
 li.active {
     border-right: solid 4px var(--secondary-color);
+    border-bottom: none;
 }
 
 .nav-content {

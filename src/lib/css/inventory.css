@@ -40,88 +40,26 @@ body {
 main {
     width: 80vw;
     display: flex;
-}
-
-.middle {
-    display: flex;
     flex-direction: column;
-    gap: 2vh;
-    width: 60vw;
-    padding: 50px;
 }
 
-.middle-top {
+.item-query {
     display: flex;
-    justify-content: space-between;
-}
-
-.side {
-    width: 20vw;
-    display: flex;
-    flex-direction: column;
-    padding: 2%;
-    height: 100%;
-    gap: 2.5vh;
-}
-
-.overview {
-    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    background-color: var(--section-bg-color);
     width: 100%;
-    justify-content: space-between;
+    height: 9vh;
 }
 
-.course-list {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    height: auto;
-    flex-wrap: wrap;
-}
-
-.seperator {
-    width: 0.5px;
-    height: fill;
-    background: var(--dark-color);
-    opacity: 20%;
-}
-
-.side-top {
-    display: flex;
-    justify-content: space-between;
-}
-
-.side-middle {
+.item-section {
+    padding: 2%;
     display: flex;
     flex-direction: column;
+    gap: 1vw;
 }
 
-.section-user {
+.item-container {
     display: flex;
-    flex-direction: column;
-    gap: 1.5vh;
-}
-
-.side-bottom {
-    display: flex;
-    flex-direction: column;
-    gap: 1.5vh;
-}
-
-.notification{
-    border-radius: 100%;
-    color: var(--secondary-color);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: var(--section-bg-color);
-    width: 3vw;
-    height: 3vw;
-}
-
-.bi.bi-bell {
-    scale: 1.5;
-}
-
-.side hr {
-    margin: 0 5%;
+    gap: 1.5rem;
 }

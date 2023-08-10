@@ -1,0 +1,44 @@
+:root {
+    --white-color: #ffffff;
+    --primary-color: #FB6B3C;
+    --secondary-color: #2BCCD3;
+    --section-bg-color: #f0f8ff;
+    --custom-btn-bg-color: #5E17EB;
+    --custom-btn-bg-hover-color: #CCFF00;
+    --dark-color: #010101;
+    --p-color: #717275;
+    --link-hover-color: #E76F51;
+
+    --body-font-family: 'Unbounded', sans-serif;
+
+    --h1-font-size: 42px;
+    --h2-font-size: 36px;
+    --h3-font-size: 28px;
+    --h4-font-size: 24px;
+    --h5-font-size: 22px;
+    --h6-font-size: 20px;
+    --p-font-size: 16px;
+    --menu-font-size: 12px;
+    --btn-font-size: 14px;
+    --copyright-font-size: 14px;
+
+    --border-radius-large: 100px;
+    --border-radius-medium: 20px;
+    --border-radius-small: 10px;
+
+    --font-weight-light: 300;
+    --font-weight-normal: 400;
+    --font-weight-semibold: 600;
+    --font-weight-bold: 700;
+}
+
+
+.category {
+    font-size: 12px;
+    color: var(--dark-color);
+}
+
+.status {
+    font-size: 12px;
+    color: var(--p-color);
+}

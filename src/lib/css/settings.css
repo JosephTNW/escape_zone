@@ -1,0 +1,9 @@
+body {
+    display: flex;
+    justify-content: space-between;
+}
+
+main {
+    width: 80vw;
+    display: flex;
+}
