@@ -107,7 +107,9 @@ main {
     gap: 1.5vh;
 }
 
-.notification{
+.notification, .logout{
+    cursor: pointer;
+    border: none;
     border-radius: 100%;
     color: var(--secondary-color);
     display: flex;
@@ -118,7 +120,18 @@ main {
     height: 3vw;
 }
 
-.bi.bi-bell {
+.logout {
+    color: red;
+    background: pink;
+}
+
+.logout button {
+    color: red;
+    border: none;
+    background: none;
+}
+
+.bi.bi-bell, .bi.bi-box-arrow-left {
     scale: 1.5;
 }
 

@@ -6,6 +6,7 @@
 	import PromoBox from './PromoBox.svelte';
 
 	export let menu = 0;
+	export let promo = undefined;
 </script>
 
 <nav class="side-nav">
@@ -115,7 +116,8 @@
 				</li>
 			{/if}
 		</ul>
-
+		{#if promo}
 		<PromoBox />
+		{/if}
 	</div>
 </nav>

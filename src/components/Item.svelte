@@ -1,6 +1,7 @@
 <script>
 	import '$lib/css/item.css';
 	import book from '$lib/images/book_mc.png';
+	import DarkShade from './DarkShade.svelte';
 
 	let displayDetail = 'd-none';
 	let content;
@@ -80,4 +81,5 @@
 		<button title="Gift" class="button btn-gift"><i class="bi bi-gift" /></button>
 	</div>
 </div>
-<div class="dark-shade {displayDetail}" on:click={() => showDetail(false)} />
+<DarkShade {displayDetail} on:clicked={() => showDetail(false)}/>
+<!-- <div class="dark-shade {displayDetail}" on:click={() => showDetail(false)} /> -->

@@ -3,6 +3,7 @@
 	import '$lib/css/settings.css';
 	import Tabs from '../../components/Tabs.svelte';
 	import ProfileField from '../../components/ProfileField.svelte';
+	import ButtonBack from '../../components/ButtonBack.svelte';
 
 	let items = ['Profile', 'Personal Data', 'Account', 'Academy', 'Newsletter'];
 	let activeItem = 'Profile';
@@ -13,14 +14,7 @@
 </script>
 
 <header>
-	<button
-		class="btn-back"
-		on:click={() => {
-			history.back();
-		}}
-	>
-		<i class="bi bi-arrow-left" />
-	</button>
+	<ButtonBack/>
 	<Tabs {items} {activeItem} width="entire" on:tabChange={tabChange} />
 </header>
 

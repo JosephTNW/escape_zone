@@ -1,0 +1,99 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Courses {
+  id          String        @id @default(uuid())
+  title       String        @db.VarChar(255)
+  createdAt   DateTime      @default(now()) @db.Timestamptz()
+  content     String?
+  published   Boolean       @default(false)
+  authorId    String
+  duration    String?
+  ongoing     Ongoing[]
+  completed   Completed[]
+  mainSection MainSection[]
+}
+
+model MainSection {
+  id         String       @id @default(uuid())
+  course     Courses      @relation(fields: [courseId], references: [id])
+  order      Int
+  courseId   String
+  title      String
+  subSection SubSection[]
+}
+
+model SubSection {
+  id          String      @id @default(uuid())
+  mainSection MainSection @relation(fields: [parentId], references: [id])
+  order       Int
+  parentId    String
+  title       String
+  content     String
+  link        String
+}
+
+model Ongoing {
+  user     Users   @relation(fields: [userId], references: [id])
+  userId   String
+  course   Courses @relation(fields: [courseId], references: [id])
+  courseId String
+  progress Int
+
+  @@id([userId, courseId])
+}
+
+model Community {
+  id      String  @id @default(uuid())
+  owner   Users   @relation(fields: [ownerId], references: [id])
+  ownerId String
+  link    String?
+}
+
+model Completed {
+  user     Users    @relation(fields: [userId], references: [id])
+  userId   String
+  Course   Courses  @relation(fields: [courseId], references: [id])
+  courseId String
+  finishAt DateTime @default(now()) @db.Timestamptz()
+
+  @@id([userId, courseId])
+}
+
+model Inventory {
+  user     Users  @relation(fields: [userId], references: [id])
+  userId   String
+  item     Items  @relation(fields: [itemName], references: [name])
+  itemName String
+  quantity Int
+
+  @@id([userId, itemName])
+}
+
+model Items {
+  name      String      @id
+  desc      String
+  rarity    Int
+  inventory Inventory[]
+}
+
+model Users {
+  id        String      @id @default(uuid())
+  name      String      @db.VarChar(255)
+  password  String      @db.VarChar(255)
+  email     String      @unique @db.VarChar(255)
+  premium   DateTime    @default(now()) @db.Timestamptz()
+  bio       String?
+  coin      Int         @default(0)
+  exp       Int         @default(0)
+  ongoing   Ongoing[]
+  completed Completed[]
+  community Community[]
+  inventory Inventory[]
+}

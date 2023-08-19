@@ -35,16 +35,48 @@
 .bubble-content{
     display: flex;
     justify-content: space-evenly;
-    width: 49%;
     background: var(--section-bg-color);
     border-radius: 15px;
+    cursor: pointer;
+}
+
+.bubble-content-2 {
+    width: 49%;
     margin-bottom: 2%;
+}
+
+.bubble-content-1 {
+    width: 24%;
 }
 
 .bubble-content img {
     width: 40%;
     margin: 2%;
     border-radius: 20px;
+}
+
+.progress-section {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.progress-section p {
+    font-size: 14px;
+}
+
+.progress-bar {
+    width: 82%;
+    height: 80%;
+    border-radius: 5px;
+    background: #909090;
+}
+
+.completion-bar {
+    width: var(--prog);
+    height: 100%;
+    background: var(--secondary-color);
 }
 
 .bubble-categ {
@@ -60,7 +92,7 @@
 }
 
 .bubble-title {
-    font-size: small;
+    font-size: large;
 }
 
 .bubble-info {

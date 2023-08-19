@@ -96,6 +96,11 @@ nav li {
     width: 18vw;
 }
 
+.icon {
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+}
+
 .white .icon{
     border-radius: 100%;
     color: var(--secondary-color);
@@ -120,4 +125,14 @@ nav li {
 
 .icon .bi {
     scale: 1.5;
+}
+
+.blue .icon:hover {
+    background: var(--secondary-color);
+    color: var(--white-color);
+}
+
+.white .icon:hover {
+    background: var(--white-color);
+    color: var(--secondary-color);
 }

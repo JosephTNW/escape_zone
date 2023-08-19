@@ -1,0 +1,30 @@
+body {
+    display: flex;
+    justify-content: space-between;
+}
+
+main {
+    width: 80vw;
+}
+
+.course-content {
+    padding: 25px;
+}
+
+
+.course-list {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: auto;
+    flex-wrap: wrap;
+}
+
+.course-query {
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    background-color: var(--section-bg-color);
+    width: 100%;
+    height: 9vh;
+}
