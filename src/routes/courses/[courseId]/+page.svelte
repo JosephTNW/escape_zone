@@ -59,7 +59,8 @@ In today's dynamic and interconnected global economy, the ability to effectively
 <header>
 	<nav>
 		<div class="corner-top">
-			<i class="bi bi-chevron-left"></i>
+			<button class="bi bi-chevron-left"
+			on:click={() => history.back()}></button>
 			<h6>{title}</h6>
 		</div>
 		<div class="roadmap">
@@ -102,7 +103,7 @@ In today's dynamic and interconnected global economy, the ability to effectively
 		</div>
 		<div class="top-panel-right">
 			<button class="btn-next">Next</button>
-			<button class="btn-complete">mark as complete</button>
+			<button class="btn-complete">Mark as complete</button>
 		</div>
 	</div>
 

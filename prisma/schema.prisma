@@ -8,11 +8,12 @@ datasource db {
 }
 
 model Courses {
-  id          String        @id @default(uuid())
+  id          String        @id @default(cuid())
   title       String        @db.VarChar(255)
   createdAt   DateTime      @default(now()) @db.Timestamptz()
   content     String?
   published   Boolean       @default(false)
+  author      Users         @relation(fields: [authorId], references: [id])
   authorId    String
   duration    String?
   ongoing     Ongoing[]
@@ -21,7 +22,7 @@ model Courses {
 }
 
 model MainSection {
-  id         String       @id @default(uuid())
+  id         String       @id @default(cuid())
   course     Courses      @relation(fields: [courseId], references: [id])
   order      Int
   courseId   String
@@ -30,7 +31,7 @@ model MainSection {
 }
 
 model SubSection {
-  id          String      @id @default(uuid())
+  id          String      @id @default(cuid())
   mainSection MainSection @relation(fields: [parentId], references: [id])
   order       Int
   parentId    String
@@ -50,7 +51,7 @@ model Ongoing {
 }
 
 model Community {
-  id      String  @id @default(uuid())
+  id      String  @id @default(cuid())
   owner   Users   @relation(fields: [ownerId], references: [id])
   ownerId String
   link    String?
@@ -77,23 +78,31 @@ model Inventory {
 }
 
 model Items {
-  name      String      @id
+  name      String      @id @unique
   desc      String
   rarity    Int
   inventory Inventory[]
 }
 
 model Users {
-  id        String      @id @default(uuid())
-  name      String      @db.VarChar(255)
-  password  String      @db.VarChar(255)
-  email     String      @unique @db.VarChar(255)
-  premium   DateTime    @default(now()) @db.Timestamptz()
-  bio       String?
-  coin      Int         @default(0)
-  exp       Int         @default(0)
-  ongoing   Ongoing[]
-  completed Completed[]
-  community Community[]
-  inventory Inventory[]
+  id             String      @id @default(cuid())
+  name           String      @db.VarChar(255)
+  password       String      @db.VarChar(255)
+  role           Role        @default(BASIC)
+  email          String      @unique @db.VarChar(255)
+  premium        DateTime    @default(now()) @db.Timestamptz()
+  bio            String?
+  coin           Int         @default(0)
+  exp            Int         @default(0)
+  settings       Json?
+  writtenCourses Courses[]
+  ongoing        Ongoing[]
+  completed      Completed[]
+  community      Community[]
+  inventory      Inventory[]
+}
+
+enum Role {
+  BASIC
+  ADMIN
 }

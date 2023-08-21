@@ -26,22 +26,29 @@ main {
     position: fixed;
     display: flex;
     justify-content: space-between;
+    align-items: center;
     background: var(--section-bg-color);
     height: var(--top-nav-height);
     width: calc(100vw - var(--nav-width));
     z-index: 1;
+    border-bottom: solid 1px rgb(0, 0, 0, 0.2);
 }
 
 .top-panel button {
-    border: none;
+    border: 1px solid var(--secondary-color);
+    font-weight: 700;
     color: var(--secondary-color);
     background: var(--white-color);
     padding: 1.2rem;
+    margin: 1.2rem 1rem;
     border-radius: 10px;
+    cursor: pointer;
 }
 
 .btn-complete {
-    color: green;
+    background: #F0FDF4 !important;
+    color: #158036 !important;
+    border: 1px solid #158036 !important;
 }
 
 main h4 {
@@ -138,7 +145,8 @@ header button i {
     border-bottom: solid 1px rgb(0, 0, 0, 0.2);
 }
 
-.corner-top i {
+.corner-top button {
+    border: solid 1px var(--secondary-color);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -149,4 +157,14 @@ header button i {
     height: 30px;
     border-radius: 100%;
     margin-left: 2rem;
+}
+
+.corner-top button:hover, .top-panel button:hover {
+    color: var(--white-color);
+    background-color: var(--secondary-color);
+}
+
+.btn-complete:hover {
+    background: #158036 !important;
+    color: #F0FDF4 !important;
 }

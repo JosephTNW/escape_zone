@@ -59,7 +59,7 @@ main {
     width: 20vw;
     display: flex;
     flex-direction: column;
-    padding: 2%;
+    padding: 25px;
     height: 100%;
     gap: 2.5vh;
 }
@@ -93,6 +93,14 @@ main {
 .side-middle {
     display: flex;
     flex-direction: column;
+}
+
+.admin-head, .admin-nav {
+    width: 100vw;
+}
+
+.admin-nav {
+    padding: 25px 25px 25px 50px;
 }
 
 .section-user {
@@ -138,3 +146,4 @@ main {
 .side hr {
     margin: 0 5%;
 }
+

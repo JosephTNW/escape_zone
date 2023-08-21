@@ -14,8 +14,8 @@
 </script>
 
 <header>
-	<ButtonBack/>
-	<Tabs {items} {activeItem} width="entire" on:tabChange={tabChange} />
+	<ButtonBack />
+	<Tabs {items} {activeItem} width="entire" gap="justify" on:tabChange={tabChange} />
 </header>
 
 <main>
@@ -52,6 +52,7 @@
 			</form>
 		</section>
 	{/if}
+	<!-- Personal Data -->
 	{#if activeItem == items[1]}
 		<section>
 			<form method="POST">
@@ -118,6 +119,7 @@
 			</form>
 		</section>
 	{/if}
+	<!-- Account -->
 	{#if activeItem == items[2]}
 		<section>
 			<form action="">
@@ -162,12 +164,13 @@
 			</form>
 		</section>
 	{/if}
+	<!-- Academy -->
 	{#if activeItem == items[3]}
 		<section>
 			<form action="">
 				<div>
 					<h4>Certification Name Verification</h4>
-					<hr>
+					<hr />
 				</div>
 				<ProfileField
 					title="Full Name"
@@ -226,6 +229,7 @@
 			</form>
 		</section>
 	{/if}
+	<!-- Newsletter -->
 	{#if activeItem == items[4]}
 		<section>
 			<form action="">

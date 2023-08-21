@@ -69,6 +69,7 @@ export const actions = {
 			}
 
 			cookies.set(cookieName, user.id);
+
 		} catch (err) {
 			console.error(err);
 			return 500, { message: 'Could not find user.' };

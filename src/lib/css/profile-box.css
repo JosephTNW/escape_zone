@@ -61,7 +61,15 @@ p.small {
     font-size: 12px;
 }
 
+.profile-content {
+    display: flex;
+    align-items: center;
+}
+
 .profile-box {
+    position: relative;
+    border: none;
+    background: none;
     display: flex;
     align-items: center;
     gap: 0.5vw;
@@ -73,9 +81,43 @@ p.small {
     transition: all 0.2s ease-in-out;
 }
 
-.profile-box:hover {
-    background: var(--section-bg-color);
-    border-radius: 30px;
+.block {
+    --scale: 1;
+    --trans-y: 0%;
+}
+
+.action-opt {
+    display: flex;
+    flex-direction: column;
+    padding: 7px 5px;
+    gap: 7px;
+    transform-origin: top;
+    transition: all 0.3s ease-in-out;
+    z-index: 2;
+    --gap: -10px;
+    --height: 100px;
+    position: absolute;
+    left: 50%;
+    border-radius: 10px;
+    bottom: calc(var(--gap) - var(--height));
+    transform: translateX(-50%) translateY(var(--trans-y, var(--gap))) scale(var(--scale, 0));
+    background-color: var(--section-bg-color);
+    width: 100%;
+    height: var(--height);
+    box-shadow: 0px 11px 55px 12px rgba(0, 0, 0, 0.23);
+    -webkit-box-shadow: 0px 11px 55px 12px rgba(0, 0, 0, 0.23);
+    -moz-box-shadow: 0px 11px 55px 12px rgba(0, 0, 0, 0.23);
+}
+
+.action-opt button {
+    height: 50%;
+    width: 100%;
+    border: none;
+    background: none;
+}
+
+.action-opt button:hover {
+    background: #DEF0FF;
 }
 
 .profile-box p {
@@ -94,4 +136,74 @@ p.small {
     padding: 3%;
     border-radius: 20px;
     background: var(--section-bg-color);
+}
+
+.select-mode {
+    display: flex;
+    justify-content: space-evenly;
+    height: 50%;
+}
+
+.switch {
+    --width: 40px;
+    --height: calc(var(--width) * (17/30));
+    position: relative;
+    display: inline-block;
+    width: var(--width);
+    height: var(--height);
+}
+
+.switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    -webkit-transition: .4s;
+    transition: .4s;
+}
+
+.slider:before {
+    --size: calc(var(--height) * (13/17));
+    --gap: calc((var(--height) - var(--size))/2);
+    position: absolute;
+    content: "";
+    height: var(--size);
+    width: var(--size);
+    left: var(--gap);
+    bottom: var(--gap);
+    background-color: white;
+    -webkit-transition: .4s;
+    transition: .4s;
+}
+
+.switch input:checked+.slider {
+    background-color: var(--secondary-color);
+}
+
+.switch input:focus+.slider {
+    box-shadow: 0 0 1px var(--secondary-color);
+}
+
+.switch :checked+.slider:before {
+    -webkit-transform: translateX(var(--size));
+    -ms-transform: translateX(var(--size));
+    transform: translateX(var(--size));
+}
+
+/* Rounded sliders */
+.slider.round {
+    border-radius: 34px;
+}
+
+.slider.round:before {
+    border-radius: 50%;
 }
