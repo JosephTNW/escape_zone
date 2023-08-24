@@ -12,7 +12,6 @@
 	export let visib = 'visible';
 	export let userMode;
 
-
 	export let display = false;
 </script>
 
@@ -52,7 +51,7 @@
 		<div class:block={display} class="action-opt">
 			<button class="" on:click={() => (window.location = '/profile')}>Profile</button>
 			<div class="select-mode">
-				<p>Admin</p>
+				<p>User</p>
 				<div class="buttoned-section">
 					<label class="switch">
 						<input type="checkbox" bind:checked={userMode}>

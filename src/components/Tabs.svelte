@@ -23,8 +23,5 @@
 				<div class:active={item === activeItem}>{item}</div>
 			</li>
 		{/each}
-		{#if showProfile}
-			<ProfileBox {role} {username} {lvl} bind:userMode />
-		{/if}
 	</ul>
 </div>

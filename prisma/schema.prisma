@@ -7,11 +7,33 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+model Events {
+  id              String            @id @default(cuid())
+  title           String            @db.VarChar(255)
+  desc            String            @db.VarChar(255)
+  createdAt       DateTime          @default(now()) @db.Timestamptz()
+  heldAt          DateTime          @default(now()) @db.Timestamptz()
+  platform        String            @db.VarChar(255)
+  host            Users             @relation(fields: [hostId], references: [id])
+  hostId          String
+  EventAttendance EventAttendance[]
+}
+
+model EventAttendance {
+  event   Events @relation(fields: [eventId], references: [id])
+  eventId String
+  user    Users  @relation(fields: [userId], references: [id])
+  userId  String
+
+  @@id([eventId, userId])
+}
+
 model Courses {
   id          String        @id @default(cuid())
   title       String        @db.VarChar(255)
   createdAt   DateTime      @default(now()) @db.Timestamptz()
   content     String?
+  category  String
   published   Boolean       @default(false)
   author      Users         @relation(fields: [authorId], references: [id])
   authorId    String
@@ -85,21 +107,24 @@ model Items {
 }
 
 model Users {
-  id             String      @id @default(cuid())
-  name           String      @db.VarChar(255)
-  password       String      @db.VarChar(255)
-  role           Role        @default(BASIC)
-  email          String      @unique @db.VarChar(255)
-  premium        DateTime    @default(now()) @db.Timestamptz()
-  bio            String?
-  coin           Int         @default(0)
-  exp            Int         @default(0)
-  settings       Json?
-  writtenCourses Courses[]
-  ongoing        Ongoing[]
-  completed      Completed[]
-  community      Community[]
-  inventory      Inventory[]
+  id              String            @id @default(cuid())
+  name            String            @db.VarChar(255)
+  password        String            @db.VarChar(255)
+  role            Role              @default(BASIC)
+  email           String            @unique @db.VarChar(255)
+  premium         DateTime          @default(now()) @db.Timestamptz()
+  bio             String?
+  coin            Int               @default(0)
+  points          Int               @default(0)
+  exp             Int               @default(0)
+  settings        Json?
+  writtenCourses  Courses[]
+  ongoing         Ongoing[]
+  completed       Completed[]
+  community       Community[]
+  inventory       Inventory[]
+  hosted          Events[]
+  EventAttendance EventAttendance[]
 }
 
 enum Role {

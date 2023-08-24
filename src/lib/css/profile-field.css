@@ -120,6 +120,25 @@ h5 span {
 }
 
 .warning p {
-    color: var(--primary-color);
-    
+    color: var(--primary-color);   
+}
+
+.duration {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.duration input {
+    max-width: fit-content;
+    width: 60px;
+}
+
+.main-sections {
+    max-height: 50vh;
+    overflow: scroll;
+}
+
+.sub-section {
+    margin-left: 20px;
 }

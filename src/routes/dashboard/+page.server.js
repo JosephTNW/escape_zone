@@ -52,14 +52,53 @@ export async function load({cookies}) {
         });
 
         const user = await prisma.users.findUniqueOrThrow({
+            select: {
+                coin: true,
+                name: true,
+                exp: true,
+                role: true
+            },
             where: {
                 id: cookies.get("sessionId")
             }
         });
 
+        const users = await prisma.users.findMany({
+            select: {
+                name: true,
+                exp: true, 
+                points: true
+            },
+            orderBy: {
+                exp: 'desc'
+            },
+            take: 4
+        })
+
+        const events = await prisma.events.findMany({
+            select: {
+                title: true,
+                heldAt: true,
+                platform: true,
+                host: {
+                    select: {
+                        name: true,
+                    }
+                },
+            },
+            orderBy: {
+                heldAt: 'desc'
+            },
+            take: 3
+        })
+
         const levels = await generateLevels(2, 1, 5, 50);
         const array = await generateCumulValue(levels)
         user.level = await findLevel(array, user.exp)
+
+        users.forEach(async user => {
+            user.level = await findLevel(array, user.exp)
+        });
 
         
         if(user.level !== 0) {
@@ -78,14 +117,14 @@ export async function load({cookies}) {
 
         if(ongoing.length){
             return {
-                user, ongoing, completed
+                users, user, ongoing, completed, events
             }
         }
 
         const randomCourse = await prisma.$queryRaw`SELECT * FROM "Courses" ORDER BY random() LIMIT 4`
 
         return {
-            user, ongoing, randomCourse, completed
+            users, user, ongoing, randomCourse, completed, events
         }
     } catch(err) {
         if(err.code === 'P2025'){
