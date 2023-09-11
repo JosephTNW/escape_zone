@@ -14,15 +14,15 @@ model Events {
   createdAt       DateTime          @default(now()) @db.Timestamptz()
   heldAt          DateTime          @default(now()) @db.Timestamptz()
   platform        String            @db.VarChar(255)
-  host            Users             @relation(fields: [hostId], references: [id])
+  host            Users             @relation(fields: [hostId], references: [id], onDelete: Cascade)
   hostId          String
   EventAttendance EventAttendance[]
 }
 
 model EventAttendance {
-  event   Events @relation(fields: [eventId], references: [id])
+  event   Events @relation(fields: [eventId], references: [id], onDelete: Cascade)
   eventId String
-  user    Users  @relation(fields: [userId], references: [id])
+  user    Users  @relation(fields: [userId], references: [id], onDelete: Cascade)
   userId  String
 
   @@id([eventId, userId])
@@ -32,20 +32,36 @@ model Courses {
   id          String        @id @default(cuid())
   title       String        @db.VarChar(255)
   createdAt   DateTime      @default(now()) @db.Timestamptz()
-  content     String?
-  category  String
+  category    String
   published   Boolean       @default(false)
-  author      Users         @relation(fields: [authorId], references: [id])
+  author      Users         @relation(fields: [authorId], references: [id], onDelete: Cascade)
   authorId    String
   duration    String?
   ongoing     Ongoing[]
   completed   Completed[]
   mainSection MainSection[]
+  assessment  Questions[]
+}
+
+model Questions {
+  id       String    @id @default(cuid())
+  course   Courses   @relation(fields: [courseId], references: [id], onDelete: Cascade)
+  courseId String
+  question String
+  choices  Choices[]
+}
+
+model Choices {
+  id        String    @id @default(cuid())
+  question  Questions @relation(fields: [qId], references: [id], onDelete: Cascade)
+  answer    String
+  isCorrect Boolean
+  qId       String
 }
 
 model MainSection {
   id         String       @id @default(cuid())
-  course     Courses      @relation(fields: [courseId], references: [id])
+  course     Courses      @relation(fields: [courseId], references: [id], onDelete: Cascade)
   order      Int
   courseId   String
   title      String
@@ -54,35 +70,36 @@ model MainSection {
 
 model SubSection {
   id          String      @id @default(cuid())
-  mainSection MainSection @relation(fields: [parentId], references: [id])
+  mainSection MainSection @relation(fields: [parentId], references: [id], onDelete: Cascade)
   order       Int
   parentId    String
   title       String
   content     String
-  link        String
 }
 
 model Ongoing {
-  user     Users   @relation(fields: [userId], references: [id])
-  userId   String
-  course   Courses @relation(fields: [courseId], references: [id])
-  courseId String
-  progress Int
+  user      Users    @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId    String
+  course    Courses  @relation(fields: [courseId], references: [id], onDelete: Cascade)
+  courseId  String
+  progress  String
+  doneQuiz  Boolean  @default(false)
+  updatedAt DateTime @default(now()) @db.Timestamptz()
 
   @@id([userId, courseId])
 }
 
 model Community {
   id      String  @id @default(cuid())
-  owner   Users   @relation(fields: [ownerId], references: [id])
+  owner   Users   @relation(fields: [ownerId], references: [id], onDelete: Cascade)
   ownerId String
   link    String?
 }
 
 model Completed {
-  user     Users    @relation(fields: [userId], references: [id])
+  user     Users    @relation(fields: [userId], references: [id], onDelete: Cascade)
   userId   String
-  Course   Courses  @relation(fields: [courseId], references: [id])
+  course   Courses  @relation(fields: [courseId], references: [id], onDelete: Cascade)
   courseId String
   finishAt DateTime @default(now()) @db.Timestamptz()
 
@@ -90,9 +107,9 @@ model Completed {
 }
 
 model Inventory {
-  user     Users  @relation(fields: [userId], references: [id])
+  user     Users  @relation(fields: [userId], references: [id], onDelete: Cascade)
   userId   String
-  item     Items  @relation(fields: [itemName], references: [name])
+  item     Items  @relation(fields: [itemName], references: [name], onDelete: Cascade)
   itemName String
   quantity Int
 
@@ -108,12 +125,27 @@ model Items {
 
 model Users {
   id              String            @id @default(cuid())
-  name            String            @db.VarChar(255)
+  name            String            @unique @db.VarChar(255)
+  fullName        String?           @db.VarChar(255)
   password        String            @db.VarChar(255)
   role            Role              @default(BASIC)
   email           String            @unique @db.VarChar(255)
   premium         DateTime          @default(now()) @db.Timestamptz()
-  bio             String?
+  bio             String?           @db.Text
+  headline        String?           @db.VarChar(255)
+  phoneNum        String?           @db.VarChar(255)
+  city            String?           @db.VarChar(255)
+  birthPlace      String?           @db.VarChar(255)
+  dateOfBirth     DateTime?         @db.Date
+  gender          String?           @db.VarChar(255)
+  lastEd          String?           @db.VarChar(255)
+  profession      String?           @db.VarChar(255)
+  institution     String?           @db.VarChar(255)
+  interests       String[]          @db.VarChar(255)
+  source          String?           @db.VarChar(255)
+  wishlist        String?           @db.VarChar(255)
+  skills          String?           @db.VarChar(255)
+  newsletter      String[]          @db.VarChar(255)
   coin            Int               @default(0)
   points          Int               @default(0)
   exp             Int               @default(0)
@@ -125,6 +157,11 @@ model Users {
   inventory       Inventory[]
   hosted          Events[]
   EventAttendance EventAttendance[]
+}
+
+model superAdmin {
+  email           String            @unique @db.VarChar(255)
+  password        String            @db.VarChar(255)
 }
 
 enum Role {

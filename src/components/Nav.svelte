@@ -4,13 +4,13 @@
 
 	onMount(() => {
 		window.addEventListener('scroll', () => {
-			if (window.scrollY > 0) {
+			if (window.scrollY > 0 && window.innerWidth > 991) {
                 className = "show"
 			} else {
                 className = ""
             }
 		});
-        if (window.scrollY > 0) {
+        if (window.scrollY > 0 && window.innerWidth > 991) {
                 className = "show"
 			} else {
                 className = ""
@@ -57,17 +57,17 @@
 				<li class="nav-item">
 					<a class="nav-link click-scroll" href="#section_5">Contact</a>
 				</li>
-			</ul>
 
-			<div class="d-none d-lg-block">
-				<button href="#" class="btn custom-btn custom-border-btn btn-naira btn-inverted"
-                on:click={() => {
-                    window.location.href = "/auth";
-                }}>
-					<i class="btn-icon bi-emoji-heart-eyes" />
-					<span>Login</span>
-                </button>
-			</div>
+				<li class="nav-item">
+					<button class="btn custom-btn custom-border-btn btn-naira btn-inverted"
+					on:click={() => {
+						window.location.href = "/auth";
+					}}>
+						<i class="btn-icon bi-emoji-heart-eyes" />
+						<span>Login</span>
+					</button>
+				</li>
+			</ul>
 		</div>
 	</div>
 </nav>

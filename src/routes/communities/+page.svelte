@@ -4,11 +4,13 @@
 	import '$lib/css/communities.css';
 	import ButtonBack from '../../components/ButtonBack.svelte';
 	import Tabs from '../../components/Tabs.svelte';
+	import Error from '../../components/Error.svelte';
 	import DarkShade from '../../components/DarkShade.svelte';
 	import CommunityList from '../../components/CommunityList.svelte';
 
 	let items = ['Daily', 'Weekly', 'Monthly', 'Yearly', 'All-Time'];
 	let activeItem = 'Daily';
+	const onConstruction = true;
 
 	const tabChange = (e) => {
 		activeItem = e.detail;
@@ -24,6 +26,9 @@
     ]
 </script>
 
+{#if onConstruction}
+<Error err_msg='On Progress'/>
+{:else}
 <header>
 	<nav>
 		<ButtonBack />
@@ -68,3 +73,4 @@
         </div>
     </div>
 </main>
+{/if}

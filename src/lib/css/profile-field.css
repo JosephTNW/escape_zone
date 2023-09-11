@@ -42,7 +42,7 @@ textarea, select {
     border-radius: 5px;
 }
 
-input, select {
+input, select, textarea {
     padding: 9px;
 }
 
@@ -135,10 +135,20 @@ h5 span {
 }
 
 .main-sections {
-    max-height: 50vh;
+    max-height: 100vh;
     overflow: scroll;
 }
 
-.sub-section {
+.main-child {
     margin-left: 20px;
+}
+
+.main-parent {
+    margin-bottom: 20px;
+}
+
+img {
+    width: 7vw;
+    height: 7vw;
+    object-fit: cover;
 }

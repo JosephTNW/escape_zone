@@ -54,7 +54,7 @@
 				<p>User</p>
 				<div class="buttoned-section">
 					<label class="switch">
-						<input type="checkbox" bind:checked={userMode}>
+						<input type="checkbox" bind:checked={userMode} on:change={() => localStorage.setItem('user_mode', userMode)}>
 						<span class="slider round"></span>
 					  </label>
 				</div>

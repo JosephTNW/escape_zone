@@ -1,6 +1,5 @@
 <script>
 	import '$lib/css/tabs.css';
-	import ProfileBox from './ProfileBox.svelte';
 	import { createEventDispatcher } from 'svelte';
 
 	const dispatch = createEventDispatcher();
@@ -11,7 +10,6 @@
 	export let gap;
 	export let showProfile;
 	export let role;
-	export let userMode;
 	export let username;
 	export let lvl;
 </script>

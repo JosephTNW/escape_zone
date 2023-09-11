@@ -544,6 +544,13 @@ strong {
   top: 8px;
 }
 
+.nav-item:last-child {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 10px 20px;
+}
+
 
 /*---------------------------------------
   HERO        
@@ -998,6 +1005,11 @@ strong {
 
   .ebook-download-form {
     padding: 30px;
+  }
+
+  .nav-item:last-child {
+    display: block;
+    margin: 0;
   }
 }
 

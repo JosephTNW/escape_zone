@@ -4,12 +4,47 @@
 	import Tabs from '../../components/Tabs.svelte';
 	import ProfileField from '../../components/ProfileField.svelte';
 	import ButtonBack from '../../components/ButtonBack.svelte';
+	import { onMount } from 'svelte';
+
+	export let data;
 
 	let items = ['Profile', 'Personal Data', 'Account', 'Academy', 'Newsletter'];
 	let activeItem = 'Profile';
+	let localState;
+
+	const saveLocalState = () => {
+		localStorage.setItem(data.user.id, JSON.stringify(localState));
+	};
+
+	onMount(() => {
+		if (
+			localStorage.getItem(data.user.id) === null ||
+			localStorage.getItem(data.user.id) === undefined ||
+			localStorage.getItem(data.user.id) === ''
+		) {
+			localStorage.setItem(
+				data.user.id,
+				JSON.stringify({
+					tabPos: 'Profile'
+				})
+			);
+		}
+
+		console.log(localStorage.getItem(data.user.id));
+
+		localState = JSON.parse(localStorage.getItem(data.user.id));
+
+		console.log(localState);
+
+		activeItem = localState.tabPos;
+	});
+
+	let user = data.user;
 
 	const tabChange = (e) => {
 		activeItem = e.detail;
+		localState.tabPos = e.detail;
+		saveLocalState();
 	};
 </script>
 
@@ -32,20 +67,32 @@
 					type="image"
 					desc="We recommend pictures with 1:1 ratio and size less than 2MB"
 				/>
-				<ProfileField title="Full Name" content="Euntae Lee" type="text" required />
-				<ProfileField title="Username" content="Vasco" required />
+				<ProfileField
+					title="Full Name"
+					content={user.fullName}
+					type="text"
+					required
+					placeholder="ex: John Doe"
+				/>
+				<ProfileField title="Username" content={user.name} required />
 				<ProfileField
 					title="Email"
-					content="Vasco@gmail.com"
+					content={user.email}
 					disabled="true"
 					type="text"
 					desc="You can change your email at the account menu"
 				/>
-				<ProfileField title="Headline" content="Student At J High" desc="Your title or main role" />
+				<ProfileField
+					title="Headline"
+					content={user.headline}
+					desc="Your title or main role"
+					placeholder="ex: Software Engineer"
+				/>
 				<ProfileField
 					title="About me"
 					type="textarea"
-					content="It's okay to be weaker than friends, but it's not okay to be weaker than the bad guys."
+					placeholder="ex: Very outgoing person"
+					content={user.bio}
 					desc="Write a short story about yourself"
 				/>
 				<button type="submit">Save Changes</button>
@@ -55,15 +102,16 @@
 	<!-- Personal Data -->
 	{#if activeItem == items[1]}
 		<section>
-			<form method="POST">
+			<form method="POST" action="?/submitPersonal">
 				<div>
 					<h4>Personal Data</h4>
 					<hr />
 				</div>
 				<ProfileField
 					title="Phone Number"
-					type="number"
-					content="088809801292"
+					type="tel"
+					content={user.phoneNum * 1}
+					placeholder="ex: +62xxxxxxxxxxx"
 					checkBox="true"
 					checkBoxDesc="I am interested in receiving information from this number."
 				/>
@@ -72,7 +120,8 @@
 					toggleBtn="true"
 					type="text"
 					toggleBtnDesc="I live outside the Country"
-					content="Seoul"
+					content={user.city}
+					placeholder="ex: Jakarta"
 					desc="The City/Region where you live"
 					required
 				/>
@@ -81,11 +130,17 @@
 					toggleBtn="true"
 					type="text"
 					toggleBtnDesc="I was born outside the Country"
-					content="Korea"
+					content={user.birthPlace}
+					placeholder="ex: Jakarta"
 					desc="The City/Region where you were born"
 				/>
-				<ProfileField title="Date of Birth" type="date" />
-				<ProfileField title="Gender" type="radio" choices={['Male', 'Female', 'IDK']} />
+				<ProfileField title="Date of Birth" type="date" content={user.dateOfBirth} />
+				<ProfileField
+					title="Gender"
+					type="option"
+					choices={['Have not chosen', 'Male', 'Female', 'Rather not say']}
+					content={user.gender}
+				/>
 				<ProfileField
 					title="Last Education"
 					type="option"
@@ -102,16 +157,19 @@
 						'S2',
 						'S3'
 					]}
+					content={user.education}
 				/>
 				<ProfileField
 					title="Current Profession"
-					content="Burn Knuckles"
+					content={user.profession}
+					placeholder="ex: Student"
 					type="text"
 					desc="Choose Student if still in school or uni"
 				/>
 				<ProfileField
 					title="Current Institution"
-					content="J High"
+					content={user.institution}
+					placeholder="ex: Google"
 					type="text"
 					desc="You may list your current company or campus"
 				/>
@@ -166,21 +224,24 @@
 	{/if}
 	<!-- Academy -->
 	{#if activeItem == items[3]}
-		<section>
-			<form action="">
-				<div>
-					<h4>Certification Name Verification</h4>
-					<hr />
-				</div>
-				<ProfileField
-					title="Full Name"
-					type="text"
-					disabled="true"
-					warning="Your name has been verified and can no longer be changed. 
+		{#if user.fullName}
+			<section>
+				<form action="">
+					<div>
+						<h4>Certification Name Verification</h4>
+						<hr />
+					</div>
+
+					<ProfileField
+						title="Full Name"
+						type="text"
+						content={user.fullName}
+						warning="Your name has been verified and can no longer be changed. 
 					Contact us with you real identity document if there are any issues with the current name"
-				/>
-			</form>
-		</section>
+					/>
+				</form>
+			</section>
+		{/if}
 
 		<section>
 			<form action="">
@@ -191,11 +252,13 @@
 				</div>
 				<ProfileField
 					type="checkbox"
+					content={user.interests}
 					choices={['insurance', 'stocks', 'crypto', 'money management']}
 					desc="You can choose more than 1 topic of interest"
 				/>
 				<ProfileField
 					title="Where have you heard of escape zone?"
+					content={user.source}
 					type="option"
 					choices={[
 						'Have not chosen',
@@ -216,13 +279,13 @@
 				<ProfileField
 					title="Materials expected from escape zone"
 					type="text"
-					content=""
+					content={user.wishlist}
 					desc="Fill in any Material you would like to learn and currently not in escape zone. Seperate with commas."
 				/>
 				<ProfileField
 					title="Mastered Skills"
 					type="text"
-					content=""
+					content={user.skills}
 					desc="Fill in your skills. Seperate with commas."
 				/>
 				<button type="submit">Save</button>
@@ -239,18 +302,10 @@
 					would like to receive:
 				</h6>
 				<ProfileField
-					choices={['Program']}
+					choices={['Program', 'Promotion', 'Job Vacancy']}
 					type="checkbox"
-					desc="You will receive information regarding scholarships, new classes, events, etc."
-				/>
-				<ProfileField
-					choices={['Promotion']}
-					type="checkbox"
-					desc="You will receive information regarding discounts and special offers."
-				/><ProfileField
-					choices={['Job Vacancy']}
-					type="checkbox"
-					desc="You will receive information regarding Job Vacancies (Escape Zone Jobs)."
+					content={user.newsletter}
+					desc={["You will receive information regarding scholarships, new classes, events, etc.", "You will receive information regarding discounts and special offers.", "You will receive information regarding Job Vacancies (Escape Zone Jobs)."]}
 				/>
 				<button>Save</button>
 			</form>

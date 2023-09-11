@@ -92,7 +92,7 @@
 }
 
 .bubble-title {
-    font-size: large;
+    font-size: 15px;
 }
 
 .bubble-info {
@@ -113,5 +113,9 @@
 
 .publish-info p {
     margin: 0%;
+}
 
+.top-sect {
+    display: flex;
+    justify-content: space-between;
 }
