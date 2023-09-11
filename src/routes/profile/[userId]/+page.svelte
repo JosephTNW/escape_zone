@@ -1,9 +1,9 @@
 <script>
-	import Tabs from '../../components/Tabs.svelte';
-	import TopDashNav from '../../components/TopDashNav.svelte';
+	import Tabs from '../../../components/Tabs.svelte';
+	import TopDashNav from '../../../components/TopDashNav.svelte';
     import '$lib/css/profile.css';
-	import ProfileBox from '../../components/ProfileBox.svelte';
-	import Achievement from '../../components/Achievement.svelte';
+	import ProfileBox from '../../../components/ProfileBox.svelte';
+	import Achievement from '../../../components/Achievement.svelte';
 
     let items = ["About Me", "Enrolled Courses", "Saved Courses", "Saved Slides", "My Recommendations"]
     let activeItem = "About Me";
